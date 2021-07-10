@@ -15,7 +15,6 @@ void	handle_signal(int signo)
 	int		status;
 
 	pid = waitpid(-1, &status, WNOHANG);
-	setup_term();
 	if (signo == SIGINT)
 	{
 		if (pid == -1)
@@ -50,8 +49,8 @@ int	main(int argc, char **argv, char **envp)
 	int		ret;
 
 	(void)argv;
+	setup_term();
 	g_global.g_exit_status = 0;
-	g_global.g_envp = NULL;
 	g_global.g_envp = copy_envp(envp);
 	ret = argc;
 	set_signal();
